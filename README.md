@@ -60,11 +60,6 @@ Bash
 python brain.py
 Watch the terminal as the Planner writes code, the Sandbox executes it, and the Inner Critic audits the terminal output. Verified skills will automatically appear in your skills/ folder, and the visualizer will update live.
 
-# 🔮 Roadmap & The Next Frontier
-Currently, the engine has mastered building local signal-processing filters (Savitzky-Golay, MAD outlier detection, CVaR risk estimators).
-
-To define the next grand objective and push this epistemic engine toward high-stakes, real-world complexity, we will refer to the Missing Interesting Future document. This will guide our transition from a local mathematical sandbox into a continuous intelligence layer capable of parsing live internet telemetry, autonomous operations, and complex multi-agent market dynamics.
-
 # 🤝 Contributing
 This is an experimental blueprint for autonomous AI. Pull requests addressing memory graph optimization, expanded sensory web-scrapers, or continuous analog LIF (Leaky Integrate-and-Fire) spike-triggers are highly encouraged.
 
