@@ -1,0 +1,9 @@
+Generation: 25
+Target: skills/streaming_huffman_encoder.py
+Score: 0.95
+Output:
+SUCCESS_OUTPUT:
+BASELINE_MS: 1.80
+MUTATION_MS: 0.75
+SPEEDUP_PCT: 58.26%
+VERIFICATION_SUCCESS: True
