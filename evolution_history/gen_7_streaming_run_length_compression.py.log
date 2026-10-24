@@ -1,0 +1,9 @@
+Generation: 7
+Target: skills/streaming_run_length_compression.py
+Score: 0.95
+Output:
+SUCCESS_OUTPUT:
+BASELINE_MS: 59.82
+MUTATION_MS: 7.13
+SPEEDUP_PCT: 88.09%
+VERIFICATION_SUCCESS: True

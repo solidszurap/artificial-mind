@@ -1,0 +1,9 @@
+Generation: 20
+Target: skills/vectorized_rolling_statistics.py
+Score: 0.95
+Output:
+SUCCESS_OUTPUT:
+BASELINE_MS: 1033.48
+MUTATION_MS: 22.47
+SPEEDUP_PCT: 97.83%
+VERIFICATION_SUCCESS: True

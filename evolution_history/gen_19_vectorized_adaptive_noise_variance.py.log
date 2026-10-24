@@ -1,0 +1,9 @@
+Generation: 19
+Target: skills/vectorized_adaptive_noise_variance.py
+Score: 0.95
+Output:
+SUCCESS_OUTPUT:
+BASELINE_MS: 534.43
+MUTATION_MS: 86.04
+SPEEDUP_PCT: 83.90%
+VERIFICATION_SUCCESS: True

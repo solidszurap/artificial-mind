@@ -1,0 +1,9 @@
+Generation: 22
+Target: skills/streaming_run_length_encoder.py
+Score: 0.95
+Output:
+SUCCESS_OUTPUT:
+BASELINE_MS: 34.33
+MUTATION_MS: 1.21
+SPEEDUP_PCT: 96.48%
+VERIFICATION_SUCCESS: True

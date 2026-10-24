@@ -1,0 +1,9 @@
+Generation: 5
+Target: skills/vectorized_attention_entropy_pruner.py
+Score: 0.98
+Output:
+SUCCESS_OUTPUT:
+BASELINE_MS: 522.60
+MUTATION_MS: 6.64
+SPEEDUP_PCT: 98.73%
+VERIFICATION_SUCCESS: True

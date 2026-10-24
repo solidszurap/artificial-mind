@@ -1,0 +1,9 @@
+Generation: 1
+Target: skills/vectorized_global_workspace_attention.py
+Score: 0.95
+Output:
+SUCCESS_OUTPUT:
+BASELINE_MS: 330.58
+MUTATION_MS: 3.28
+SPEEDUP_PCT: 99.01%
+VERIFICATION_SUCCESS: True
