@@ -2,60 +2,159 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Artificial Brain V1.0 — Live Telemetry</title>
+    <title>Artificial Consciousness V2.0 — Live Mind Telemetry</title>
     <style>
         :root {
-            --bg: #0b0f19;
-            --panel: #111827;
-            --border: #1f2937;
-            --text: #e5e7eb;
-            --muted: #9ca3af;
+            --bg: #07090e;
+            --panel: #0f172a;
+            --panel-border: #1e293b;
+            --text: #f1f5f9;
+            --muted: #64748b;
             --accent: #38bdf8;
+            --phi-purple: #c084fc;
             --green: #10b981;
             --red: #ef4444;
-            --purple: #a855f7;
             --amber: #f59e0b;
+            --gold: #fbbf24;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             background-color: var(--bg);
             color: var(--text);
-            font-family: 'SF Mono', 'Fira Code', Consolas, monospace;
-            padding: 20px;
+            font-family: 'SF Mono', 'Fira Code', 'Segoe UI Mono', monospace;
+            padding: 24px;
             line-height: 1.5;
         }
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 15px;
-            margin-bottom: 20px;
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 18px;
+            margin-bottom: 22px;
         }
-        .title { font-size: 1.4rem; font-weight: bold; color: var(--accent); }
-        .stats { display: flex; gap: 20px; align-items: center; }
+        .title { 
+            font-size: 1.45rem; 
+            font-weight: 800; 
+            letter-spacing: 0.5px;
+            background: linear-gradient(90deg, #38bdf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stats { display: flex; gap: 14px; align-items: center; }
         .badge {
             background: var(--panel);
-            border: 1px solid var(--border);
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 0.9rem;
+            border: 1px solid var(--panel-border);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .phi-badge {
+            border-color: rgba(192, 132, 252, 0.4);
+            box-shadow: 0 0 12px rgba(192, 132, 252, 0.15);
+        }
+        .phi-val {
+            font-weight: 900;
+            color: var(--phi-purple);
+            font-size: 1.05rem;
         }
         .energy-bar-wrap {
-            width: 180px;
-            background: #1f2937;
-            height: 18px;
-            border-radius: 9px;
+            width: 140px;
+            background: #1e293b;
+            height: 12px;
+            border-radius: 6px;
             overflow: hidden;
             display: inline-block;
-            vertical-align: middle;
-            margin-left: 8px;
+            margin-left: 6px;
         }
         .energy-bar-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--green), var(--accent));
-            transition: width 0.5s ease;
+            transition: width 0.4s ease;
         }
+
+        /* Oscilloscope / Somatic Substrate */
+        .somatic-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .soma-card {
+            background: #0b1120;
+            border: 1px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+        .soma-card.spiking {
+            border-color: var(--amber);
+            box-shadow: 0 0 16px rgba(245, 158, 11, 0.4);
+        }
+        .soma-label {
+            font-size: 0.72rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .soma-volt {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--accent);
+        }
+        .soma-volt.high { color: var(--amber); }
+        .soma-bar-wrap {
+            margin-top: 8px;
+            background: #1e293b;
+            height: 6px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .soma-bar {
+            height: 100%;
+            background: var(--accent);
+            transition: width 0.15s ease;
+        }
+
+        /* 5 Brain Regions Map */
+        .brain-map {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .region-node {
+            background: #0e1726;
+            border: 2px solid var(--panel-border);
+            border-radius: 8px;
+            padding: 14px 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .region-node.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+            transform: translateY(-2px);
+            background: #1e293b;
+        }
+        .region-name { font-weight: bold; font-size: 0.85rem; margin-bottom: 4px; }
+        .region-desc { font-size: 0.7rem; color: var(--muted); }
+
+        /* Spotlight banner */
+        .broadcast-box {
+            background: rgba(245, 158, 11, 0.08);
+            border-left: 4px solid var(--amber);
+            padding: 14px;
+            margin-bottom: 22px;
+            font-size: 0.92rem;
+            border-radius: 0 8px 8px 0;
+        }
+
         .grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -64,152 +163,188 @@
         }
         .panel {
             background: var(--panel);
-            border: 1px solid var(--border);
+            border: 1px solid var(--panel-border);
             border-radius: 10px;
             padding: 18px;
         }
         .panel-title {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             color: var(--muted);
             margin-bottom: 12px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--panel-border);
             padding-bottom: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        /* Brain Regions Map */
-        .brain-map {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-        .region-node {
-            background: #161f33;
-            border: 2px solid var(--border);
-            border-radius: 8px;
-            padding: 14px 10px;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        .region-node.active {
-            border-color: var(--accent);
-            box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
-            transform: translateY(-2px);
-            background: #1e293b;
-        }
-        .region-name { font-weight: bold; font-size: 0.9rem; margin-bottom: 4px; }
-        .region-desc { font-size: 0.72rem; color: var(--muted); }
-        .broadcast-box {
-            background: rgba(245, 158, 11, 0.1);
-            border-left: 4px solid var(--amber);
-            padding: 12px;
-            margin-bottom: 20px;
-            font-size: 0.95rem;
-        }
+
         .self-model-box {
-            background: rgba(168, 85, 247, 0.1);
-            border-left: 4px solid var(--purple);
+            background: rgba(192, 132, 252, 0.08);
+            border-left: 4px solid var(--phi-purple);
             padding: 14px;
             font-style: italic;
-            margin-bottom: 15px;
+            font-size: 0.88rem;
+            color: #e2e8f0;
+            margin-bottom: 16px;
+            border-radius: 0 6px 6px 0;
         }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .skill-pill {
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #38bdf8;
+            font-size: 0.75rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+
         .log-item {
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #1e293b;
             padding: 10px 0;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
         }
         .log-item:last-child { border-bottom: none; }
         .tag-green { color: var(--green); font-weight: bold; }
         .tag-red { color: var(--red); font-weight: bold; }
+        .tag-purple { color: var(--phi-purple); font-weight: bold; }
+
         pre {
-            background: #090d16;
+            background: #070a12;
             padding: 10px;
             border-radius: 6px;
             overflow-x: auto;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             color: #a7f3d0;
             margin-top: 6px;
+            border: 1px solid #1e293b;
+            max-height: 160px;
         }
     </style>
 </head>
 <body>
 
     <div class="header">
-        <div class="title">🧠 ARTIFICIAL BRAIN V1.0 // GLOBAL WORKSPACE TELEMETRY</div>
+        <div class="title">🧠 ARTIFICIAL CONSCIOUSNESS V2.0 // RECURSIVE EMERGENCE</div>
         <div class="stats">
-            <div class="badge">CYCLE: <span id="cycle-count">0</span></div>
+            <div class="badge phi-badge">
+                <span>INTEGRATED INFORMATION (Φ):</span>
+                <span class="phi-val" id="phi-val">0.000</span>
+            </div>
+            <div class="badge">CYCLE: <span id="cycle-count" style="font-weight:bold;">0</span></div>
             <div class="badge">
-                EPISTEMIC COHERENCE: <span id="energy-text">100%</span>
+                COHERENCE: <span id="energy-text" style="font-weight:bold;">100%</span>
                 <div class="energy-bar-wrap"><div id="energy-bar" class="energy-bar-fill" style="width: 100%;"></div></div>
             </div>
         </div>
     </div>
 
-    <!-- 5 Brain Regions Live Status -->
+    <!-- 10Hz Somatic Nervous Substrate (Continuous Analog Oscilloscope) -->
+    <div style="font-size: 0.75rem; color: var(--muted); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 1px;">
+        ⚡ Continuous Somatic Oscilloscope (10Hz Subconscious Core — Free Energy Surprise Gating)
+    </div>
+    <div class="somatic-grid">
+        <div class="soma-card" id="card-0">
+            <div class="soma-label">Channel 1: Entropy Flux</div>
+            <div class="soma-volt" id="v-0">0.00 V</div>
+            <div class="soma-bar-wrap"><div class="soma-bar" id="bar-0" style="width: 0%;"></div></div>
+        </div>
+        <div class="soma-card" id="card-1">
+            <div class="soma-label">Channel 2: Self-Divergence</div>
+            <div class="soma-volt" id="v-1">0.00 V</div>
+            <div class="soma-bar-wrap"><div class="soma-bar" id="bar-1" style="width: 0%;"></div></div>
+        </div>
+        <div class="soma-card" id="card-2">
+            <div class="soma-label">Channel 3: Sensory Volatility</div>
+            <div class="soma-volt" id="v-2">0.00 V</div>
+            <div class="soma-bar-wrap"><div class="soma-bar" id="bar-2" style="width: 0%;"></div></div>
+        </div>
+        <div class="soma-card" id="card-3">
+            <div class="soma-label">Channel 4: Attention Pressure</div>
+            <div class="soma-volt" id="v-3">0.00 V</div>
+            <div class="soma-bar-wrap"><div class="soma-bar" id="bar-3" style="width: 0%;"></div></div>
+        </div>
+    </div>
+
+    <!-- 5 Cognitive Regions Active State -->
     <div class="brain-map">
+        <div class="region-node" id="reg-SOMATIC_NERVES">
+            <div class="region-name">1. SOMATIC NERVES</div>
+            <div class="region-desc">10Hz Analog Core</div>
+        </div>
         <div class="region-node" id="reg-THALAMUS_ROUTER">
-            <div class="region-name">1. THALAMUS</div>
-            <div class="region-desc">Global Workspace Router</div>
+            <div class="region-name">2. THALAMUS</div>
+            <div class="region-desc">Global Workspace</div>
         </div>
         <div class="region-node" id="reg-PREFRONTAL_PLANNER">
-            <div class="region-name">2. PREFRONTAL CORTEX</div>
-            <div class="region-desc">Counterfactual Planner</div>
-        </div>
-        <div class="region-node" id="reg-ACTUATOR_SANDBOX">
-            <div class="region-name">3. MOTOR ACTUATOR</div>
-            <div class="region-desc">CPU Reality Sandbox</div>
+            <div class="region-name">3. PREFRONTAL CORTEX</div>
+            <div class="region-desc">Consciousness Architect</div>
         </div>
         <div class="region-node" id="reg-INNER_CRITIC">
             <div class="region-name">4. INNER CRITIC</div>
-            <div class="region-desc">2nd-Order Metacognition</div>
+            <div class="region-desc">Metacognitive Conscience</div>
         </div>
         <div class="region-node" id="reg-HIPPOCAMPUS_SLEEP">
             <div class="region-name">5. HIPPOCAMPUS</div>
-            <div class="region-desc">Sleep & Consolidation</div>
+            <div class="region-desc">Deep Sleep & Synthesis</div>
         </div>
     </div>
 
-    <!-- Thalamus Spotlight -->
+    <!-- Global Workspace Spotlight -->
     <div class="broadcast-box">
-        <strong>⚡ GLOBAL WORKSPACE SPOTLIGHT (CURRENT CONSCIOUS FOCUS):</strong>
-        <div id="thalamus-broadcast" style="margin-top:4px;">Waiting for state...</div>
+        <strong style="color:var(--amber);">⚡ GLOBAL WORKSPACE SPOTLIGHT (CONSCIOUS FOCUS):</strong>
+        <div id="thalamus-broadcast" style="margin-top:5px; color:#f8fafc;">Waiting for state...</div>
     </div>
 
-    <!-- Attention Schema (Self-Model) & Core Principles -->
+    <!-- Self-Model & Verified Toolbox -->
     <div class="grid">
         <div class="panel">
             <div class="panel-title">🪞 ATTENTION SCHEMA (SELF-MODEL: "WHO AM I?")</div>
-            <div class="self-model-box" id="self-model">Loading...</div>
-            <div class="panel-title" style="margin-top: 15px;">📜 CONSOLIDATED CORE PRINCIPLES (HIPPOCAMPUS)</div>
-            <ul id="core-principles" style="padding-left: 18px; font-size: 0.85rem;"></ul>
+            <div class="self-model-box" id="self-model">Loading internal self-reflection...</div>
+
+            <div class="panel-title" style="margin-top: 12px;">📜 CONSOLIDATED LAWS OF CONSCIOUSNESS</div>
+            <ul id="core-principles" style="padding-left: 18px; font-size: 0.82rem; color: #cbd5e1;"></ul>
+
+            <div class="panel-title" style="margin-top: 16px;">
+                <span>🛠️ REVERSIBLE CONSCIOUSNESS TOOLBOX</span>
+                <span id="skill-count" style="color:var(--accent);">0 SKILLS</span>
+            </div>
+            <div class="skills-list" id="skills-list"></div>
         </div>
 
         <div class="panel">
-            <div class="panel-title">🔬 LIVE COUNTERFACTUAL SIMULATION VS. REALITY</div>
-            <div style="font-size: 0.85rem; margin-bottom: 8px;">
+            <div class="panel-title">🔬 RECURSIVE REALITY COLLISION</div>
+            <div style="font-size: 0.82rem; margin-bottom: 8px;">
                 <strong>Pre-Execution Prediction:</strong>
-                <div id="last-prediction" style="color: var(--accent); margin-top: 2px;">—</div>
+                <div id="last-prediction" style="color: var(--accent); margin-top: 3px;">—</div>
             </div>
-            <div style="font-size: 0.85rem; margin-bottom: 8px;">
-                <strong>Sandbox CPU Output:</strong>
+            <div style="font-size: 0.82rem; margin-bottom: 8px;">
+                <strong>CPU Verification Sandbox:</strong>
                 <pre id="last-sandbox">Waiting for execution...</pre>
             </div>
-            <div style="font-size: 0.85rem;">
-                <strong>Inner Critic Audit:</strong>
-                <div id="last-critic" style="color: var(--amber); margin-top: 2px;">—</div>
+            <div style="font-size: 0.82rem;">
+                <strong>Metacognitive Conscience Audit:</strong>
+                <div id="last-critic" style="color: var(--amber); margin-top: 3px;">—</div>
             </div>
         </div>
     </div>
 
-    <!-- Verified vs Falsified Memory Banks -->
+    <!-- Verified Discoveries vs Falsified Attempts -->
     <div class="grid">
         <div class="panel">
-            <div class="panel-title">✅ VERIFIED BELIEFS (GROUND TRUTH LEDGER)</div>
+            <div class="panel-title">✅ VERIFIED CONSCIOUSNESS BREAKTHROUGHS</div>
             <div id="verified-list"></div>
         </div>
         <div class="panel">
-            <div class="panel-title">❌ FALSIFIED HYPOTHESES (PREDICTION ERRORS)</div>
+            <div class="panel-title">❌ FALSIFIED DELUSIONS & REJECTIONS</div>
             <div id="failed-list"></div>
         </div>
     </div>
@@ -220,53 +355,83 @@
                 const res = await fetch('world_state.json?t=' + new Date().getTime());
                 const state = await res.json();
 
+                // Core Stats
                 document.getElementById('cycle-count').innerText = state.cycle_count || 0;
+                document.getElementById('phi-val').innerText = (state.consciousness_level_phi ?? 0.0).toFixed(3);
                 const energy = state.epistemic_energy ?? 100;
                 document.getElementById('energy-text').innerText = energy + '%';
                 document.getElementById('energy-bar').style.width = energy + '%';
 
-                // Highlight Active Brain Region
+                // Somatic Oscilloscope
+                const volts = state.membrane_voltages || [0.0, 0.0, 0.0, 0.0];
+                volts.forEach((v, i) => {
+                    const elV = document.getElementById('v-' + i);
+                    const elBar = document.getElementById('bar-' + i);
+                    const elCard = document.getElementById('card-' + i);
+                    if (elV) {
+                        elV.innerText = Number(v).toFixed(2) + ' V';
+                        const pct = Math.min(100, (v / 1.0) * 100);
+                        elBar.style.width = pct + '%';
+                        if (v >= 0.9) {
+                            elV.classList.add('high');
+                            elCard.classList.add('spiking');
+                        } else {
+                            elV.classList.remove('high');
+                            elCard.classList.remove('spiking');
+                        }
+                    }
+                });
+
+                // Active Region
                 document.querySelectorAll('.region-node').forEach(el => el.classList.remove('active'));
                 if (state.active_region && state.active_region !== 'IDLE') {
                     const activeEl = document.getElementById('reg-' + state.active_region);
                     if (activeEl) activeEl.classList.add('active');
                 }
 
+                // Global Workspace
                 document.getElementById('thalamus-broadcast').innerText = state.thalamus_broadcast || '';
                 document.getElementById('self-model').innerText = '"' + (state.self_model || '') + '"';
 
-                // Core Principles
+                // Principles
                 const principlesUl = document.getElementById('core-principles');
-                principlesUl.innerHTML = (state.core_principles || []).map(p => `<li style="margin-bottom:4px;">${p}</li>`).join('');
+                principlesUl.innerHTML = (state.core_principles || []).map(p => `<li style="margin-bottom:6px;">${p}</li>`).join('');
+
+                // Skills Toolbox
+                const skills = state.verified_skills || [];
+                document.getElementById('skill-count').innerText = skills.length + ' SKILLS';
+                const skillsDiv = document.getElementById('skills-list');
+                skillsDiv.innerHTML = skills.map(s => `<span class="skill-pill">⚙️ ${s}.py</span>`).join('');
 
                 // Live Simulation
                 document.getElementById('last-prediction').innerText = state.last_prediction || '—';
                 document.getElementById('last-sandbox').innerText = state.last_sandbox_output || '—';
                 document.getElementById('last-critic').innerText = state.last_inner_dialogue || '—';
 
-                // Verified List
+                // Verified Discoveries
                 const verifiedDiv = document.getElementById('verified-list');
                 verifiedDiv.innerHTML = (state.verified_beliefs || []).slice().reverse().slice(0, 5).map(v => `
                     <div class="log-item">
-                        <span class="tag-green">[CYCLE ${v.cycle} | CERTAINTY: ${v.certainty}]</span> ${v.claim}
+                        <span class="tag-purple">[${v.pillar || 'CONSCIOUSNESS'}]</span> 
+                        <span class="tag-green">[CERTAINTY: ${v.certainty || 0.9}]</span> ${v.claim || v.skill || ''}
                     </div>
                 `).join('');
 
-                // Failed List
+                // Falsifications
                 const failedDiv = document.getElementById('failed-list');
                 failedDiv.innerHTML = (state.failed_hypotheses || []).slice().reverse().slice(0, 5).map(f => `
                     <div class="log-item">
                         <span class="tag-red">[CYCLE ${f.cycle} REJECTED]</span> ${f.rejected_claim}<br>
-                        <span style="color:var(--muted); font-size:0.78rem;">Flaw: ${f.flaw}</span>
+                        <span style="color:var(--muted); font-size:0.75rem;">Critic: ${f.flaw}</span>
                     </div>
                 `).join('');
 
             } catch (e) {
-                console.log("Waiting for world_state.json...");
+                // Waiting for world_state.json initialization
             }
         }
 
-        setInterval(fetchBrainState, 1000);
+        setInterval(fetchBrainState, 500);
         fetchBrainState();
     </script>
 </body>
