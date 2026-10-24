@@ -1,4 +1,4 @@
-# 🧠 Synthetic Cognitive Substrate (V1.0)
+# 🧠 Synthetic Cognitive Substrate
 Standard LLMs (like ChatGPT or Claude) are passive "language cortices"—they sit inert until prompted, predict the next likely token, and immediately lose their state when the session ends. They have no continuous memory, no active agency, and no internal check on whether they are hallucinating.
 
 This project is a Continuous Active-Inference Engine. It transforms a static LLM into an autonomous, self-auditing artificial mind. It formulates hypotheses, writes Python code to test them in a local sandbox, uses a decoupled "Inner Critic" to ruthlessly audit the empirical results, and saves verified algorithms into a permanent tool library.
